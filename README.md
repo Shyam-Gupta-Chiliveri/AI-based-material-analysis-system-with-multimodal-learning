@@ -10,6 +10,17 @@
 
 ---
 
+## Phase 5 — Agentic AI
+
+Phases 1–4 are in this repository. The agentic app, AWS deployment, and live demo are here:
+
+| | |
+|---|---|
+| Phase 5 repository | [Agentic-AI__Materials-Intelligence-MI-](https://github.com/Shyam-Gupta-Chiliveri/Agentic-AI__Materials-Intelligence-MI-) |
+| Live demo | [https://d1odeaab3kt4gn.cloudfront.net](https://d1odeaab3kt4gn.cloudfront.net) |
+
+---
+
 ## 📋 Table of Contents
 
 - [Project Overview](#-project-overview)
