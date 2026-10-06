@@ -10,14 +10,18 @@
 
 ---
 
-## Phase 5 — Agentic AI
+## Live demos
 
-Phases 1–4 are in this repository. The agentic app, AWS deployment, and live demo are here:
+Open these in a browser — no local setup required:
 
-| | |
-|---|---|
-| Phase 5 repository | [Agentic-AI__Materials-Intelligence-MI-](https://github.com/Shyam-Gupta-Chiliveri/Agentic-AI__Materials-Intelligence-MI-) |
-| Live demo | [https://d1odeaab3kt4gn.cloudfront.net](https://d1odeaab3kt4gn.cloudfront.net) |
+| App | What it does | Live URL |
+|---|---|---|
+| **Agentic AI** | Materials Intelligence case desk | [https://138.2.179.154.sslip.io](https://138.2.179.154.sslip.io) |
+| **SEM classifier** | Deep learning: ductile vs brittle fracture on SEM images | [https://sem.138.2.179.154.sslip.io](https://sem.138.2.179.154.sslip.io) |
+| **RAG** | Ask ISO/DIN and metallography questions | [https://rag.138.2.179.154.sslip.io](https://rag.138.2.179.154.sslip.io) |
+| **Project page** | LinkedIn-friendly landing page | [https://shyam-gupta-chiliveri.github.io/materials-intelligence/](https://shyam-gupta-chiliveri.github.io/materials-intelligence/) |
+
+Phase 5 source: [Agentic-AI__Materials-Intelligence-MI-](https://github.com/Shyam-Gupta-Chiliveri/Agentic-AI__Materials-Intelligence-MI-)
 
 ---
 
@@ -232,17 +236,19 @@ jupyter notebook
 
 ### 2. Running Streamlit Applications
 
+Live (no install): [SEM classifier](https://sem.138.2.179.154.sslip.io) · [RAG](https://rag.138.2.179.154.sslip.io) · [Agentic AI](https://138.2.179.154.sslip.io)
+
 #### RAG Query System
 ```bash
 streamlit run apps/materials_rag_streamlit_app.py
 ```
-Access at: http://localhost:8501
+Local: http://localhost:8501 · Live: https://rag.138.2.179.154.sslip.io
 
 #### SEM Image Classifier
 ```bash
 streamlit run apps/image_classifier_app.py
 ```
-Access at: http://localhost:8502
+Local: http://localhost:8502 · Live: https://sem.138.2.179.154.sslip.io
 
 ---
 
@@ -604,7 +610,8 @@ streamlit run apps/materials_rag_streamlit_app.py
 ## 🌐 Interactive Applications
 
 ### 1. Materials RAG System
-**File**: `materials_rag_streamlit_app.py`
+**File**: `materials_rag_streamlit_app.py`  
+**Live:** [https://rag.138.2.179.154.sslip.io](https://rag.138.2.179.154.sslip.io)
 
 #### Features
 - Natural language querying of technical documents
@@ -632,7 +639,8 @@ A: [Comprehensive explanation referencing ISO 643, comparison
 ```
 
 ### 2. SEM Image Classifier
-**File**: `image_classifier_app.py`
+**File**: `image_classifier_app.py`  
+**Live:** [https://sem.138.2.179.154.sslip.io](https://sem.138.2.179.154.sslip.io)
 
 #### Features
 - Drag-and-drop image upload
