@@ -118,7 +118,7 @@ function sampleIndex(value) {
 }
 
 function renderSamples() {
-  const kept = sampleIndex(question.value);
+  const kept = result.hidden ? sampleIndex(question.value) : -1;
   document.getElementById("samples").innerHTML = SAMPLES[LANG].map((text, index) => (
     `<button type="button" class="sample" data-index="${index}"><span class="sample-no">${String(index + 1).padStart(2, "0")}</span><span>${escapeText(text)}</span></button>`
   )).join("");
