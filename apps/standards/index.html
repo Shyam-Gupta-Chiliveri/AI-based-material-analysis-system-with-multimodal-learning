@@ -4,6 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Standards desk</title>
+  <script>
+    (function () {
+      var theme = localStorage.getItem("standards-theme");
+      if (theme === "dark" || theme === "light") document.documentElement.dataset.theme = theme;
+      var lang = localStorage.getItem("standards-lang");
+      if (lang === "de" || lang === "en") document.documentElement.lang = lang;
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,53 +22,61 @@
     <div class="brand">
       <span class="mark" aria-hidden="true"></span>
       <div>
-        <p class="eyebrow">Materials laboratory</p>
-        <p class="name">Standards desk</p>
+        <p class="eyebrow" data-i18n="eyebrow">Materials laboratory</p>
+        <p class="name" data-i18n="name">Standards desk</p>
       </div>
     </div>
-    <div class="tools">
-      <button type="button" id="theme-light" class="seg is-on" aria-pressed="true">Light</button>
-      <button type="button" id="theme-dark" class="seg" aria-pressed="false">Dark</button>
+    <div class="top-tools">
+      <div class="seg" role="group" data-i18n-aria="themeLabel" aria-label="Appearance">
+        <button type="button" id="theme-light" class="seg-btn" data-i18n="themeLight" aria-pressed="true">Light</button>
+        <button type="button" id="theme-dark" class="seg-btn" data-i18n="themeDark" aria-pressed="false">Dark</button>
+      </div>
+      <div class="seg" role="group" data-i18n-aria="langLabel" aria-label="Language">
+        <button type="button" class="seg-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="seg-btn" data-lang="de" aria-pressed="false">DE</button>
+      </div>
     </div>
   </header>
 
   <main>
-    <p class="kicker">ISO / DIN · metallography · hardness</p>
-    <h1>Ask the laboratory standards</h1>
-    <p class="lede">Questions about ISO and DIN standards, metallographic preparation, hardness testing, and material properties. The answer is drawn from the textbook pages in this desk.</p>
+    <p class="kicker" data-i18n="kicker">ISO / DIN · metallography · hardness</p>
+    <h1 data-i18n="title">Ask the laboratory standards</h1>
+    <p class="lede" data-i18n="lede">Questions about ISO and DIN standards, metallographic preparation, hardness testing, and material properties. The answer is drawn from the textbook pages in this desk.</p>
 
     <form id="ask" class="ask">
-      <label for="question">Your question</label>
-      <textarea id="question" name="question" rows="3" placeholder="What is the Vickers hardness test procedure?" required></textarea>
+      <label for="question" data-i18n="question">Your question</label>
+      <textarea id="question" name="question" rows="3" data-i18n-placeholder="placeholder" placeholder="What is the Vickers hardness test procedure?" required></textarea>
       <div class="row">
-        <label class="sources" for="top-k">Sources <output id="top-k-value">5</output></label>
+        <label class="sources" for="top-k"><span data-i18n="sources">Sources</span> <output id="top-k-value">5</output></label>
         <input id="top-k" type="range" min="1" max="10" value="5">
-        <button type="submit" id="search">Search</button>
+        <button type="submit" id="search" data-i18n="search">Search</button>
       </div>
     </form>
 
-    <section class="samples" aria-label="Sample questions">
-      <h2>Sample questions</h2>
+    <section class="samples" data-i18n-aria="samplesLabel" aria-label="Sample questions">
+      <h2 data-i18n="samples">Sample questions</h2>
       <div id="samples"></div>
     </section>
 
     <p id="status" class="status" role="status" hidden></p>
 
     <article id="result" class="result" hidden>
-      <h2>Answer</h2>
+      <p class="sheet-kicker" data-i18n="note">Laboratory note</p>
+      <p id="asked" class="sheet-q"></p>
+      <h2 data-i18n="answer">Answer</h2>
       <div id="answer" class="answer"></div>
-      <h2>Sources</h2>
+      <h2 data-i18n="sourcesHead">Sources</h2>
       <ol id="sources"></ol>
       <div class="figures">
-        <div><span>Response time</span><strong id="seconds">—</strong></div>
-        <div><span>Sources used</span><strong id="count">—</strong></div>
-        <div><span>Answer length</span><strong id="words">—</strong></div>
+        <div><span data-i18n="time">Response time</span><strong id="seconds">—</strong></div>
+        <div><span data-i18n="used">Sources used</span><strong id="count">—</strong></div>
+        <div><span data-i18n="length">Answer length</span><strong id="words">—</strong></div>
       </div>
     </article>
   </main>
 
   <footer>
-    <p>Local FAISS index · LangChain · Groq. The textbook pages stay on this desk. This is a study aid, not a controlled copy of the standard.</p>
+    <p data-i18n="foot">Local FAISS index · LangChain · Groq. The textbook pages stay on this desk. This is a study aid, not a controlled copy of the standard.</p>
   </footer>
   <script src="app.js"></script>
 </body>

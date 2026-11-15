@@ -8,6 +8,9 @@
   --blue: #0c2340;
   --on-blue: #fbfbf9;
   --soft: #e7eef5;
+  --din: #1f4d3a;
+  --thesis: #5e5a54;
+  --paper-ink: #7a2e24;
   --warn: #7a2e24;
   --warn-bg: #f8efe8;
   --sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -24,6 +27,9 @@ html[data-theme="dark"] {
   --blue: #d5e0ec;
   --on-blue: #141311;
   --soft: #2a333d;
+  --din: #b7d4c4;
+  --thesis: #b7b1a8;
+  --paper-ink: #f0b2a8;
   --warn: #f0b2a8;
   --warn-bg: #3a2420;
 }
@@ -49,6 +55,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   padding: 22px 0 18px;
   border-bottom: 1px solid var(--line);
 }
@@ -58,8 +65,9 @@ body {
   width: 14px;
   height: 28px;
   background: var(--blue);
+  flex: none;
 }
-.eyebrow, .kicker {
+.eyebrow, .kicker, .sheet-kicker {
   margin: 0;
   font-size: 12px;
   letter-spacing: 0.14em;
@@ -68,17 +76,33 @@ body {
 }
 .name { margin: 0; font-weight: 600; }
 
-.tools { display: flex; border: 1px solid var(--line); }
+.top-tools {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 .seg {
+  display: flex;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+.seg-btn {
+  appearance: none;
   border: 0;
   background: transparent;
   color: var(--muted);
-  font: inherit;
-  font-size: 14px;
-  padding: 6px 12px;
+  height: 36px;
+  padding: 0 12px;
   cursor: pointer;
+  letter-spacing: 0.06em;
+  font: inherit;
+  font-size: 13px;
 }
-.seg.is-on { background: var(--blue); color: var(--on-blue); }
+.seg-btn + .seg-btn { border-left: 1px solid var(--line); }
+.seg-btn[aria-pressed="true"] {
+  background: var(--blue);
+  color: var(--on-blue);
+}
 
 main { padding: 36px 0 48px; }
 h1 {
@@ -113,6 +137,10 @@ textarea {
   padding: 12px;
   resize: vertical;
 }
+textarea:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+}
 .row {
   display: flex;
   align-items: center;
@@ -134,17 +162,28 @@ button[type="submit"] {
 button[type="submit"]:disabled { opacity: 0.55; cursor: progress; }
 
 .samples { margin-top: 16px; }
-#samples { display: flex; flex-direction: column; gap: 8px; }
+#samples { display: flex; flex-direction: column; }
 .sample {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  align-items: baseline;
+  gap: 8px;
   text-align: left;
-  border: 1px solid var(--line);
+  border: 0;
+  border-top: 1px solid var(--line);
   background: transparent;
   color: var(--ink);
   font: inherit;
-  padding: 10px 12px;
+  padding: 12px 4px;
   cursor: pointer;
 }
+.sample:last-child { border-bottom: 1px solid var(--line); }
 .sample:hover { background: var(--soft); }
+.sample-no {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+}
 
 .status {
   margin: 16px 0 0;
@@ -153,10 +192,58 @@ button[type="submit"]:disabled { opacity: 0.55; cursor: progress; }
   color: var(--warn);
 }
 .result { margin-top: 16px; }
+.sheet-q {
+  margin: 6px 0 18px;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+.answer {
+  border-left: 2px solid var(--blue);
+  padding-left: 16px;
+  overflow-wrap: anywhere;
+}
 .answer p { margin: 0 0 12px; }
 .answer p:last-child { margin-bottom: 0; }
-#sources { margin: 0; padding-left: 1.2em; }
-#sources li { margin: 6px 0; }
+
+#sources {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cite {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr) auto;
+  gap: 2px 14px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.cite:last-child { border-bottom: 1px solid var(--line); }
+.cite-kind {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.cite-kind.iso { color: var(--blue); }
+.cite-kind.din { color: var(--din); }
+.cite-kind.thesis { color: var(--thesis); }
+.cite-kind.paper { color: var(--paper-ink); }
+.cite-code { font-weight: 500; overflow-wrap: anywhere; }
+.cite-file {
+  grid-column: 2;
+  color: var(--muted);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.cite-page {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+
 .figures {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -187,7 +274,10 @@ footer {
 
 @media (max-width: 640px) {
   h1 { font-size: 32px; }
+  .top { align-items: flex-start; flex-wrap: wrap; }
   .row { flex-wrap: wrap; }
   .figures { grid-template-columns: 1fr; }
+  .cite { grid-template-columns: 1fr auto; }
+  .cite-kind { grid-column: 1; }
   button[type="submit"] { width: 100%; }
 }
