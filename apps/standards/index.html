@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Standards desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="mark" aria-hidden="true"></span>
+      <div>
+        <p class="eyebrow">Materials laboratory</p>
+        <p class="name">Standards desk</p>
+      </div>
+    </div>
+    <div class="tools">
+      <button type="button" id="theme-light" class="seg is-on" aria-pressed="true">Light</button>
+      <button type="button" id="theme-dark" class="seg" aria-pressed="false">Dark</button>
+    </div>
+  </header>
+
+  <main>
+    <p class="kicker">ISO / DIN · metallography · hardness</p>
+    <h1>Ask the laboratory standards</h1>
+    <p class="lede">Questions about ISO and DIN standards, metallographic preparation, hardness testing, and material properties. The answer is drawn from the textbook pages in this desk.</p>
+
+    <form id="ask" class="ask">
+      <label for="question">Your question</label>
+      <textarea id="question" name="question" rows="3" placeholder="What is the Vickers hardness test procedure?" required></textarea>
+      <div class="row">
+        <label class="sources" for="top-k">Sources <output id="top-k-value">5</output></label>
+        <input id="top-k" type="range" min="1" max="10" value="5">
+        <button type="submit" id="search">Search</button>
+      </div>
+    </form>
+
+    <section class="samples" aria-label="Sample questions">
+      <h2>Sample questions</h2>
+      <div id="samples"></div>
+    </section>
+
+    <p id="status" class="status" role="status" hidden></p>
+
+    <article id="result" class="result" hidden>
+      <h2>Answer</h2>
+      <div id="answer" class="answer"></div>
+      <h2>Sources</h2>
+      <ol id="sources"></ol>
+      <div class="figures">
+        <div><span>Response time</span><strong id="seconds">—</strong></div>
+        <div><span>Sources used</span><strong id="count">—</strong></div>
+        <div><span>Answer length</span><strong id="words">—</strong></div>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p>Local FAISS index · LangChain · Groq. The textbook pages stay on this desk. This is a study aid, not a controlled copy of the standard.</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
